@@ -1,15 +1,9 @@
-import React, { useState, useEffect } from "react";
-const MyCollections = () => {
-    return (
-        <>
-            <div className="container">
-            <h1 >
-                My Playlists
-            </h1>
-            </div>
-            
-        </>
-        );
+import React from 'react'
 
-};
-export default MyCollections;
+export default function Playlists() {
+    return (
+        <div>
+            <h1>Playlists</h1>
+        </div>
+    )
+}
