@@ -24,6 +24,7 @@ code {
 .container {
   text-align: center;
   margin-top: 3rem;
+  margin-left: 90vw;
 }
 /* Login CSS */
 
@@ -82,7 +83,7 @@ code {
 
 .login_btn:hover {
   background: rgba(254, 254, 254, 1);
-  color: rgba(254, 254, 254, 1);
+  color: lightgray;
 }
 
 /* Sidebar CSS */
@@ -165,12 +166,133 @@ code {
 }
 
 
+/* Homepage CSS */
 
+.homepage_container {
+  height: 100%;
+  width: 60%;
+  min-height: 30vw;
+  margin-left: 20%;
+  background-color: aqua;
+  display: flex;
+  border-radius: 5px;
+}
+
+.left_homepage {
+  text-align: center;
+  background-color:rgba(0, 0, 0, 0.5);
+  flex: 1;
+  background-image: linear-gradient(rgb(185, 131, 208), rgb(111, 94, 177));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color:rgba(255, 255, 255, 1);
+  text-shadow: 10px 10px 15px rgba(0, 0, 0, 0.7);
+  border-radius: 5px 0px 0px 5px;
+}
+
+.right_homepage {
+  justify-content: center;
+  display: inline-block;
+  text-align: center;
+  background-color: aliceblue;
+  flex: 1;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.homepage_btn{
+  display: grid;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  background: rgba(255, 255, 255, 1);
+  width: 20%;
+  margin-left: 1.25%;
+  border-radius: 5px;
+  border-color: transparent;
+  color: rgba(0, 0, 0, 1);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  position: absolute;
+}
+
+.homepage_btn:hover {
+  background: rgba(254, 254, 254, 1);
+  color: rgba(254, 254, 254, 1);
+}
+
+.homepage_title {
+  height: 100%;
+  width: 50%;
+  min-height: 30vw;
+  margin-left: 25%;
+  margin-top: 8%;
+  display: flex;
+  text-align: center;
+  
+}
+
+/* Search bar CSS */
+
+.searchbar { /* container */
+  font-family: 'Roboto', sans-serif;
+  display: inline-block;
+  text-align: left;
+  margin-left: -30%;
+  min-width: 15vw;
+  margin: 10px auto;
+  border-radius: 3px;
+}
+.searchbar input { /* text */
+  font-family: 'Roboto', sans-serif;
+  min-width: 15vw;
+  margin-left: -30%;
+  background: rgba(254, 254, 254, 1);
+  border: transparent;
+  border-radius: 5px;
+  padding: 0.6rem 0.5rem;
+}
+
+.searchbar_button{
+  display: inline-flex;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  background: rgba(255, 255, 255, 1);
+  width: 9%;
+  margin-left: 1.25%;
+  border-radius: 5px;
+  border-color: transparent;
+  color: rgba(0, 0, 0, 1);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  position: absolute;
+}
+
+.searchbar_button:hover {
+  background: rgba(254, 254, 254, 1);
+  color: lightgrey;
+}
+
+.searchbar_button:active {
+  background: rgb(218, 182, 230);
+  color: white;
+}
+
+
+/* Playlists CSS */
 
 /* General CSS */
 
 span {
-  margin-left: 16px;
+  margin-left: 12px;
 }
   
 h1 {
