@@ -25,6 +25,7 @@ code {
   text-align: center;
   margin-top: 3rem;
 }
+/* Login CSS */
 
 .login_container {
   height: 100%;
@@ -84,25 +85,100 @@ code {
   color: rgba(254, 254, 254, 1);
 }
 
+/* Sidebar CSS */
+
+/* opening and closing the sidebar */ 
 
 
-ul {
-  list-style-type: none;
+.togglesidebar {
+  margin: 2vw;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
-a {
+
+.opensidebar {
+  color: rgb(255, 255, 255);
+  font-size: 50px;
+  background: none;
+}
+
+.closesidebar {
+  margin-left: -10px;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: flex-;
+  align-items: center;
+}
+
+/* Actual sidebar aesthetics */
+
+.sidebar {
+  background-color: rgb(23, 9, 40);
+  width: 250px;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: -100%;
+  transition: 850ms;
+}
+
+.sidebar.active {
+  left: 0;
+  transition: 350ms;
+}
+
+
+/* sidebar text */
+
+.sidebar_info {
+  margin-left: -30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 8px 8px 8px 16px;
+  list-style: none;
+  height: 60px;
+}
+
+.sidebar_info a { /* for links */
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
   text-decoration: none;
+  color: rgba(255, 255, 255, 1);
+  font-size: 20px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  border-radius: 4px;
 }
-h1,
-h2,
-h3,
-h4 {
-  letter-spacing: var(--spacing);
-  text-transform: capitalize;
-  line-height: 1.25;
-  margin-bottom: 0.75rem;
+
+.sidebar_info a:hover {
+  background-color: rgb(100, 64, 145);
 }
+
+
+
+
+/* General CSS */
+
+span {
+  margin-left: 16px;
+}
+  
 h1 {
   font-size: 3rem;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
 }
 h2 {
   font-size: 2rem;
