@@ -33,7 +33,7 @@ export default function Login() {
                     <span className="login_btn" onClick={() => Login()}>Login</span>
                     <br /><br />
                     <p>OR</p>
-                    <span className="login_btn" onClick={() => Signup()}>SignUp</span>
+                    <span className="login_btn" onClick={() => Signup()}>Sign Up</span>
                 </div>
                 
             </div>

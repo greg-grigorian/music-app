@@ -2,16 +2,6 @@
 import React, { useState } from 'react'
 import * as Io from 'react-icons/io'; //some nice looking icons
 
-const SearchResults = ({ search, searches, addsong }) => { //basically returning just the searchbar for now
-    return (
-        <>
-            <div className="songs"> 
-                <SearchBar onSearch={search} />
-            </div>
-        </>
-    )
-}
-
 const SearchBar = ({ onSearch }) => {
     const [query, displayQuery] = useState(""); //toggling what's actually been searched
     const handleSubmit = (except) => {
@@ -37,4 +27,15 @@ const SearchBar = ({ onSearch }) => {
     ); // classic searchbar, just with something to (hopefully) catch exceptions
 };
 
-export default SearchResults;
+const ReturnSearch = ({ search, searches, addsong }) => { //basically returning just the searchbar for now
+    return (
+        <>
+            <div> 
+                <SearchBar onSearch={search} />
+            </div>
+        </>
+    )
+}
+
+
+export default ReturnSearch;

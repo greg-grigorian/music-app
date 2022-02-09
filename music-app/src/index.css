@@ -289,6 +289,30 @@ code {
 
 /* Playlists CSS */
 
+.playlists_container {
+  height: 100%;
+  width: 60%;
+  min-height: 30vw;
+  margin-left: 20%;
+  background-color: white;
+  display: flex;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.playlists_title {
+  display: inline;
+  text-align: center;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  width: 30%;
+  height: 30%;
+  background-image: linear-gradient(rgb(185, 131, 208), rgb(111, 94, 177));
+  border-radius: 5px;
+  color: white;
+  margin-top: 2%;
+  margin-left: 34%;
+
+}
 /* General CSS */
 
 span {

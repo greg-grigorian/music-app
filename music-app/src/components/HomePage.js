@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import Sidebar from './Sidebar';
-import SearchResults from './SearchBar';
+import ReturnSearch from './SearchBar';
 
 export default function HomePage() {
     const [searches, displaySearches] = useState([])
@@ -18,7 +18,7 @@ export default function HomePage() {
             <div className="homepage_container">
                 <div className='left_homepage'>
                 <br></br>
-                <SearchResults search={search} searches={searches} addsong={doThese} />
+                <ReturnSearch search={search} searches={searches} addsong={doThese} />
                 </div>
                 <div className="right_homepage">
 
