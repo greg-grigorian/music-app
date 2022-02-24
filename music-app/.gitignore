@@ -12,3 +12,6 @@ node_modules/
 
 # dotenv environment variable files
 .env
+
+# Long package-lock (just use package.json)
+package-lock.json
