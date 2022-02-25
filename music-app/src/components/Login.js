@@ -1,13 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { loginUrl } from "../spotify";
 
 export default function Login() {
-    const navigate = useNavigate();
 
-    const Signup = () => {};
-
-    const Login = () => {};
     return (
         <>
             <div className="login_container">
@@ -30,7 +25,7 @@ export default function Login() {
                     <br></br>
                     <br></br>
                     <a href={loginUrl}>
-                        <span className="login_btn" onClick={() => Login()}>
+                        <span className="login_btn">
                             Login
                         </span>
                     </a>
@@ -38,7 +33,7 @@ export default function Login() {
                     <br />
                     <p>OR</p>
                     <a href={loginUrl}>
-                        <span className="login_btn" onClick={() => Signup()}>
+                        <span className="login_btn">
                             Sign Up
                         </span>
                     </a>

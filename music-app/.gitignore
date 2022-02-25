@@ -12,3 +12,9 @@ node_modules/
 
 # dotenv environment variable files
 .env
+
+# For Macs
+.DS_Store
+
+# Long package-lock (just use package.json)
+package-lock.json

@@ -27,15 +27,5 @@ const SearchBar = ({ onSearch }) => {
     ); // classic searchbar, just with something to (hopefully) catch exceptions
 };
 
-const ReturnSearch = ({ search, searches, addsong }) => { //basically returning just the searchbar for now
-    return (
-        <>
-            <div> 
-                <SearchBar onSearch={search} />
-            </div>
-        </>
-    )
-}
 
-
-export default ReturnSearch;
+export default SearchBar;

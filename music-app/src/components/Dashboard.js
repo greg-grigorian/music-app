@@ -23,7 +23,7 @@ export default function Dashboard({ code }) {
         spotifyApi.getMe().then((data) => {
             let id = data.body.id;
             axios
-                .post("http://localhost:5000/spotifysignup", { id })
+                .post("http://localhost:8000/spotifysignup", { id })
                 .then((response) => {
                     // If success then cut the code string from the URL and execute the other thing
                     window.history.pushState({}, null, "/");

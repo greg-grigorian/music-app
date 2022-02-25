@@ -7,7 +7,7 @@ export default function useAuth(code) {
 
     useEffect(() => {
         axios
-            .post("http://localhost:5000/spotifylogin", { code })
+            .post("http://localhost:8000/spotifylogin", { code })
             .then((response) => {
                 // If success then cut the code string from the URL and execute the other thing
                 window.history.pushState({}, null, "/");
