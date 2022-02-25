@@ -1,27 +1,21 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import { loginUrl } from "../spotify";
 
 export default function Login() {
-    const navigate = useNavigate()
 
-
-    const Signup = () => {
-        
-    }
-
-    const Login = () => {
-        
-    }
     return (
         <>
             <div className="login_container">
-                <div className='left_login'>
+                <div className="left_login">
                     <br></br>
                     <br></br>
                     <br></br>
-                    <br /><br /><br />
+                    <br />
+                    <br />
+                    <br />
                     <h1>PlayList</h1>
-                    <br /><br />
+                    <br />
+                    <br />
                 </div>
                 <div className="right_login">
                     <br></br>
@@ -30,13 +24,21 @@ export default function Login() {
                     <br></br>
                     <br></br>
                     <br></br>
-                    <span className="login_btn" onClick={() => Login()}>Login</span>
-                    <br /><br />
+                    <a href={loginUrl}>
+                        <span className="login_btn">
+                            Login
+                        </span>
+                    </a>
+                    <br />
+                    <br />
                     <p>OR</p>
-                    <span className="login_btn" onClick={() => Signup()}>Sign Up</span>
+                    <a href={loginUrl}>
+                        <span className="login_btn">
+                            Sign Up
+                        </span>
+                    </a>
                 </div>
-                
             </div>
         </>
-    )
+    );
 }
