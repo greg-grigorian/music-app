@@ -16,16 +16,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.section, .container {
-  width: 90vw;
-  margin: 0 auto;
-  max-width: var(--max-width);
-}
-.container {
-  text-align: center;
-  margin-top: 3rem;
-  margin-left: 90vw;
-}
+
 /* Login CSS */
 
 .login_container {
@@ -188,15 +179,17 @@ code {
   background-repeat: no-repeat;
   background-attachment: fixed;
   color:rgba(255, 255, 255, 1);
-  text-shadow: 10px 10px 15px rgba(0, 0, 0, 0.7);
   border-radius: 5px 0px 0px 5px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .right_homepage {
   justify-content: center;
   display: inline-block;
   text-align: center;
-  background-color: aliceblue;
+  background-image: linear-gradient(rgb(43, 20, 53), rgb(73, 60, 126));
   flex: 1;
   border-radius: 0px 5px 5px 0px;
 }
@@ -242,7 +235,6 @@ code {
   font-family: 'Roboto', sans-serif;
   display: inline-block;
   text-align: left;
-  margin-left: -30%;
   min-width: 15vw;
   margin: 10px auto;
   border-radius: 3px;
@@ -250,7 +242,8 @@ code {
 .searchbar input { /* text */
   font-family: 'Roboto', sans-serif;
   min-width: 15vw;
-  margin-left: -30%;
+  margin-left: 2.8rem;
+  margin-top: 1rem;
   background: rgba(254, 254, 254, 1);
   border: transparent;
   border-radius: 5px;
@@ -258,7 +251,8 @@ code {
 }
 
 .searchbar_button{
-  display: inline-flex;
+  margin-top: -35px;
+  display: flex;
   font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
   letter-spacing: 2.5px;
@@ -267,7 +261,7 @@ code {
   transition: all 0.3s ease 0s;
   background: rgba(255, 255, 255, 1);
   width: 9%;
-  margin-left: 1.25%;
+  margin-left: 18rem;
   border-radius: 5px;
   border-color: transparent;
   color: rgba(0, 0, 0, 1);
@@ -287,11 +281,11 @@ code {
 }
 
 
-/* Playlists CSS */
+/* Playlists Page CSS */
 
 .playlists_container {
   height: 100%;
-  width: 60%;
+  width: 50%;
   min-height: 30vw;
   margin-left: 20%;
   background-color: white;
@@ -327,6 +321,7 @@ h1 {
   font-weight: 500;
 }
 h2 {
+  font-family: 'Roboto', sans-serif;
   font-size: 2rem;
 }
 h3 {
@@ -335,3 +330,150 @@ h3 {
 h4 {
   font-size: 0.875rem;
 }
+
+p {
+  font-family: 'Roboto', sans-serif;
+}
+
+
+
+/* Homepage playlist CSS */
+
+
+.playlist_homepage {
+  display: inline-block;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  max-height: 950px;
+  margin-left: 1.5rem;
+  max-height: 20rem;
+  min-width: 22rem;
+  margin-right: 1.5rem;
+
+}
+
+.playlist_title {
+  font-family: 'Roboto', sans-serif;
+  display: inline-block;
+  text-align: left;
+  min-width: 15vw;
+  margin: 20px auto;
+  margin-left: -6rem;
+  border-radius: 5px;
+  padding: 5px;
+  max-width: 15vw;
+  min-height: 1.8vw;
+  margin-top: 6px;
+  border: transparent;
+
+}
+
+.playlist_title input {
+  font-family: 'Roboto', sans-serif;
+  min-width: 15vw;
+  margin-left: 3rem;
+  margin-top: 1rem;
+  border: transparent;
+  border-radius: 10px;
+  padding: 0.6rem 0.5rem;
+}
+
+
+.playlist_button{
+  margin-top: 1rem;
+  align-items: center;
+  display: inline-flex;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  background: rgba(255, 255, 255, 1);
+  width: 9%;
+  margin-left: 1.25%;
+  border-radius: 5px;
+  border-color: transparent;
+  color: rgba(0, 0, 0, 1);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  position: absolute;
+  max-width: 5.5vw;
+  margin-top: 6px;
+}
+
+.playlist_button:hover {
+  background: rgba(254, 254, 254, 1);
+  color: lightgrey;
+}
+
+.playlist_button:active {
+  background: rgb(218, 182, 230);
+  color: white;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
+/* Search results CSS */
+
+.searchresults {
+  display: inline-block;
+  flex: 0;
+  min-width: 22rem;
+  margin-left: -13rem;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  margin-right: 3rem;
+  margin-top: 5rem;
+  margin-bottom: 3rem;
+  max-height: 20rem;
+}
+
+/* Individual songs */
+
+.song {
+  display: flex;
+  align-items: center;
+  border-top: 1px solid rgb(256, 256, 256);
+}
+
+.song_button {
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color .25s;
+  border: 0px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+  padding: .5rem;
+}
+
+.song_button hover {
+  color: rgba(265, 265, 265, .5);
+}
+
+.song_button active {
+  color: rgba(265, 265, 265, .5);
+}
+
+.about_song {
+  display: flex;
+  flex-grow: 2;
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
+}
+
+.about_song p {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgb(256, 256, 256);
+}
+
+
+
