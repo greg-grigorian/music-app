@@ -36,6 +36,8 @@ const Spotify = {
             // KNOWN BUG: Redirects to new every time. Would be nice if it put users back where they were.
             // Will be fixed, if, say, the access token was taken once at login and never again. (aka useAuth works here)
             window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=http://localhost:3000/new/`; //redirects user to access url
+            window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=http://localhost:3000/home/`; //redirects user to access url
+
         }
     },
 
