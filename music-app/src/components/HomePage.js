@@ -1,29 +1,27 @@
-import React, {useState} from 'react'
 import Sidebar from './Sidebar';
-import SearchBar from './SearchBar';
+import Recommendations from './Recommendations';
 
 export default function HomePage() {
-    const search = (term) => {
-    }
-
+    
     return (
         <>
-            <Sidebar />
-            <div className="homepage_container">
-                <div className='left_homepage'>
-                <br></br>
-                <div> 
-                <SearchBar onSearch={search} />
-                </div>
-                </div>
-                <div className="right_homepage">
-
-                    <h2>Playlists</h2>
-                    
-                </div>
-                
+        <Sidebar/>
+        <div className="recommendations_container">
+            <div className="recommendations_title">
+                <h1>
+                    Welcome!
+                </h1>
+                <h3>
+                    How are you feeling?
+                </h3>
             </div>
 
+            <Recommendations />
+        </div>
+       
+
         </>
-    )
+                
+    );
 }
+

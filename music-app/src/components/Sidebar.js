@@ -12,6 +12,12 @@ const NavLinks = [ // all the pages go in here
       cssname: 'sidebar_info'
     },
     {
+      path: '/new',
+      page: 'New Playlist',
+      icon: <Io.IoIosAdd />,
+      cssname: 'sidebar_info'
+    },
+    {
       path: '/play',
       page: 'Playlists',
       icon: <Io.IoIosPlay />,
