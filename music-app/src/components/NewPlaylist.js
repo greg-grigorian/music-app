@@ -100,15 +100,15 @@ class NewPlaylist extends React.Component {
     return (
       <div>
           <Sidebar />
-        <div className="homepage_container">
-          <div className="left_homepage">
+        <div className="new_container">
+          <div className="left_new">
               
             <SearchBar onSearch={this.searchSpotify} searchResults={this.state.searchResults} 
               onAdd={this.addSong} />
             <br></br>
             <Results searchResults={this.state.searchResults} 
               onAdd={this.addSong} />
-            <div className="right_homepage">
+            <div className="right_new">
                 <br></br>
                 <CurrentPlaylist playlistName={this.state.playlistName} playlistContents={this.state.playlistContents} onRemove={this.deleteSong} 
               onNameChange={this.changeName} onSave={this.syncSpotify} />
