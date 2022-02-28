@@ -31,7 +31,6 @@ export default function Login() {
                     </a>
                     <br />
                     <br />
-                    <p>OR</p>
                     <a href={loginUrl}>
                         <span className="login_btn">
                             Sign Up

@@ -314,18 +314,27 @@ span {
 }
   
 h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
   letter-spacing: 2.5px;
   font-weight: 500;
+  text-align: center;
+  color: rgb(256, 256, 256);
+
 }
 h2 {
+  text-align: center;
   font-family: 'Roboto', sans-serif;
   font-size: 2rem;
 }
 h3 {
+  font-family: 'Roboto', sans-serif;
+
+  text-align: center;
   font-size: 1.25rem;
+  color: rgb(256, 256, 256);
+
 }
 h4 {
   font-size: 0.875rem;
@@ -335,6 +344,11 @@ p {
   font-family: 'Roboto', sans-serif;
 }
 
+a {
+  font-family: 'Roboto', sans-serif;
+  color:rgb(0, 0, 0);
+  text-decoration: none;
+}
 
 
 /* Homepage playlist CSS */
@@ -477,3 +491,101 @@ p {
 
 
 
+/* recommendations */
+
+.recommendations_container {
+  background-image: linear-gradient(rgb(185, 131, 208), rgb(111, 94, 177));
+  justify-content: center;
+  align-items: center;
+  margin-top: -5rem;
+  width: 80%;
+  margin-left: 10%;
+  padding: 5px;
+  height: 80%;
+}
+
+.recommendation_mood {
+  display: flex;
+  justify-content: center;
+}
+
+.recommendation_mood button {
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  background: rgba(255, 255, 255, 1);
+  margin: 5px;
+  border-radius: 5px;
+  border-color: transparent;
+  color: rgba(0, 0, 0, 1);
+  padding: 0.5rem 1rem;
+}
+
+.moods button:hover {
+  background: rgba(254, 254, 254, 1);
+  color: lightgray;
+}
+
+.recommendations_title {
+
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+
+  
+}
+
+
+.recommendations {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  flex: 0;
+  width: 80%;
+  overflow-y: scroll;
+  margin-left: 10%;
+  scroll-behavior: smooth;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  max-height: 15rem;
+  text-overflow: ellipsis;
+}
+
+.recommendation_playlist {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgb(256, 256, 256);
+}
+
+.recommendation_playlist:hover {
+  background-color: rgba(265, 265, 265, .5);
+}
+
+
+.recommendation_name {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  font-size: 2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  color: rgb(256, 256, 256);
+  margin: 15px 0 5px;
+}
+
+.recommendation_user {
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgb(256, 256, 256);
+  margin: 5px 0 15px;
+}

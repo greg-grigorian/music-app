@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./components/HomePage";
+import NewPlaylist from "./components/NewPlaylist";
 import Playlists from "./components/Playlists";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
@@ -16,6 +17,7 @@ function App() {
                     element={code ? <Dashboard code={code} /> : <Login />}
                 />
                 <Route exact path="home" element={<HomePage />} />
+                <Route exact path="new" element={<NewPlaylist />} />
                 <Route exact path="play" element={<Playlists />} />
             </Routes>
         </Router>

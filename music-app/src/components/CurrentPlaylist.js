@@ -26,8 +26,6 @@ class CurrentPlaylist extends React.Component {
                  </div>
             </div>
             
-        
-            
         )
     }
 }
