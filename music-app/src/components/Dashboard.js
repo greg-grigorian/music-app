@@ -7,7 +7,7 @@ let axios = require("axios");
 
 // Setting the spotifyApi, so that we can use it's functions
 const spotifyApi = new SpotifyWebApi({
-    clientId: process.env.CLIENT_ID,
+    clientId: process.env.REACT_APP_CLIENT_ID,
 });
 
 export default function Dashboard({ code }) {
@@ -23,7 +23,10 @@ export default function Dashboard({ code }) {
         spotifyApi.getMe().then((data) => {
             let id = data.body.id;
             axios
-                .post("http://localhost:8000/spotifysignup", { id })
+                .post(
+                    `http://localhost:${process.env.REACT_APP_SERVER_PORT}/spotifysignup`,
+                    { id }
+                )
                 .then((response) => {
                     // If success then cut the code string from the URL and execute the other thing
                     window.history.pushState({}, null, "/");
