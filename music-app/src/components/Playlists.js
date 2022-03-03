@@ -1,6 +1,18 @@
 import React from 'react'
 import Sidebar from './Sidebar'
 
+// class Results extends React.Component {
+//     render() {
+//         return(
+//             <div className="searchresults">
+//                 <Songs songs={this.props.searchResults} onAdd={this.props.onAdd} isRemoval={false}/>
+//             </div>
+//         )
+//     }
+//   }
+
+
+
 export default function Playlists() {
     return (
         <>
