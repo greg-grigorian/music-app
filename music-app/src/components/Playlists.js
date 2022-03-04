@@ -1,25 +1,51 @@
 import React from 'react'
 import Sidebar from './Sidebar'
+import Songs from "./Songs"
+import SearchBar from "./Searchbar"
 
-// class Results extends React.Component {
-//     render() {
-//         return(
-//             <div className="searchresults">
-//                 <Songs songs={this.props.searchResults} onAdd={this.props.onAdd} isRemoval={false}/>
-//             </div>
-//         )
-//     }
-//   }
+import Spotify from "../spotify"
+class Results extends React.Component {
+    render() {
+        return(
+            <div className="searchresults">
+                <Songs songs={this.props.searchResults} onAdd={this.props.onAdd} isRemoval={false}/>
+            </div>
+        )
+    }
+  }
 
 
 
-export default function Playlists() {
+class Playlist extends React.Component {
+    constructor(props) {
+      super(props);
+  
+      this.state = {
+        searchResults: [],
+
+      };
+      
+    this.searchSong = this.searchSong.bind(this);
+    }
+    searchSong(term){
+        Spotify.searchSong(term).then(searchResults => {
+          this.setState({ 
+            searchResults: searchResults 
+          });
+        });
+      }
+render() {
     return (
         <>
         <Sidebar/>
+        <h2> Search for a song in your playlists: </h2>
             <div className="playlists_container">
-                <div className="playlists_title">
-                    <h2>Playlists</h2>
+
+                <div className="playlists_search">
+                    <SearchBar onSearch={this.searchSong} searchResults={this.state.searchResults} />
+                </div>
+                <div className="recommendations">
+                <Results searchResults={this.state.searchResults} />
                 </div>
 
                 
@@ -28,3 +54,6 @@ export default function Playlists() {
         </>
     )
 }
+}
+
+export default Playlist;

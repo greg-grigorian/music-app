@@ -98,7 +98,7 @@ const Spotify = {
     },
 
     // reference: https://developer.spotify.com/documentation/web-api/reference/#/operations/create-playlist
-    syncSpotify(playlistName, songs) {
+    syncSpotify(playlistName, songs) { // songInfo
         //saves the playlist to the user's Spotify account
         if (!playlistName || !songs.length) {
             // User didn't add songs or a name

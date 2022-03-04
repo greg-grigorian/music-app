@@ -485,7 +485,7 @@ body {
   height: 100%;
   width: 50%;
   min-height: 30vw;
-  margin-left: 20%;
+  margin-left: 25%;
   background-color: white;
   display: flex;
   border-radius: 5px;
@@ -505,6 +505,11 @@ body {
   margin-left: 34%;
 
 }
+
+.playlists_search {
+  margin-left: 20%;
+}
+
 /* General CSS */
 
 span {
@@ -525,6 +530,7 @@ h2 {
   text-align: center;
   font-family: 'Roboto', sans-serif;
   font-size: 2rem;
+  color: white;
 }
 h3 {
   font-family: 'Roboto', sans-serif;
