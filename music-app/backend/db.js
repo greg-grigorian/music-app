@@ -19,9 +19,43 @@ module.exports.connectDB = async () => {
     }
 };
 
-module.exports.createUser = async (spotifyID) => {
+module.exports.createUser = (spotifyID, tracks) => {
     const db = mongoose.connection;
     let collection = db.collection("spotifyUsers");
-    let user = new userModel({ spotifyID: spotifyID, playlists: [] });
-    collection.insertOne(user);
+    collection.findOne({ spotifyID: spotifyID }, (err, user) => {
+        if (user) {
+            console.log("User alr exists");
+            return;
+        } else {
+            let user = new userModel({
+                spotifyID: spotifyID,
+                playlists: tracks,
+            });
+
+            collection.insertOne(user);
+        }
+    });
+};
+
+module.exports.updateUser = (spotifyID, playlistName, tracks) => {
+    const db = mongoose.connection;
+    let collection = db.collection("spotifyUsers");
+    collection.findOne({ spotifyID: spotifyID }, (err, user) => {
+        if (user) {
+            let newPlaylists = user.playlists;
+            let toAdd = {
+                name: playlistName,
+                songs: tracks,
+            };
+
+            newPlaylists.push(toAdd);
+            console.log(newPlaylists);
+            collection.updateOne(
+                { spotifyID: spotifyID },
+                { $set: { playlists: newPlaylists } }
+            );
+        } else {
+            this.createUser(spotifyID, tracks);
+        }
+    });
 };

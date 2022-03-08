@@ -1,3 +1,6 @@
+import { getTokens } from "../src/auth";
+let axios = require("axios");
+
 const authEndpoint = "https://accounts.spotify.com/authorize";
 const redirectUri = `http://localhost:${process.env.REACT_APP_CLIENT_PORT}/`;
 const clientId = process.env.REACT_APP_CLIENT_ID;
@@ -7,6 +10,7 @@ const scopes = [
     "user-read-email",
     "user-read-private",
     "playlist-read-private",
+    "playlist-modify-public",
 ];
 
 export const loginUrl = `${authEndpoint}?client_id=${clientId}&response_type=code&redirect_uri=${redirectUri}&scope=${scopes.join(
@@ -24,17 +28,15 @@ const Spotify = {
             return accessToken;
         }
         // Else, if the token shows up in the window location, return it
-        const accessTokenMatch =
-            window.location.href.match(/access_token=([^&]*)/);
-        if (accessTokenMatch) {
-            accessToken = accessTokenMatch[1];
+        let at = getTokens()[0];
+        if (at !== "") {
+            accessToken = at;
             return accessToken;
         } else {
             // Direct user to the login page of spotify.
             // KNOWN BUG: Redirects to new every time. Would be nice if it put users back where they were.
             // Will be fixed, if, say, the access token was taken once at login and never again. (aka useAuth works here)
-            window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=http://localhost:${process.env.REACT_APP_CLIENT_PORT}/new/`; //redirects user to access url
-            window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=playlist-modify-public&redirect_uri=http://localhost:${process.env.REACT_APP_CLIENT_PORT}/home/`; //redirects user to access url
+            window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=${scopes.join("%20")}&redirect_uri=http://localhost:${process.env.REACT_APP_CLIENT_PORT}/home/`; //redirects user to access url
         }
     },
 
@@ -122,6 +124,13 @@ const Spotify = {
             })
             .then((jsonResponse) => {
                 currentUser = jsonResponse.id; // got user!
+
+                // Update backend db
+                axios.post(
+                    `http://localhost:${process.env.REACT_APP_SERVER_PORT}/addPlaylist`,
+                    { currentUser, playlistName, songs }
+                );
+
                 // using userID to create a new playlist
                 return fetch(
                     `https://api.spotify.com/v1/users/${currentUser}/playlists`,

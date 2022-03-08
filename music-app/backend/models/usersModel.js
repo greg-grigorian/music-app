@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema(
+var userSchema = new mongoose.Schema(
     {
         spotifyID: {
             type: String,
@@ -8,7 +8,12 @@ const userSchema = new mongoose.Schema(
             unique: true,
         },
         playlists: {
-            type: Array,
+            type: [
+                {
+                    name: String,
+                    songs: Array,
+                },
+            ],
         },
     },
     {

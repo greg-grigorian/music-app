@@ -2,8 +2,12 @@ import { useEffect, useState } from "react";
 
 let axios = require("axios");
 
+var at = "";
+var rt = "";
+
 export default function useAuth(code) {
-    const [accessToken, setAccessToken] = useState();
+    const [accessToken, setAccessToken] = useState("");
+    const [refreshToken, setRefreshToken] = useState("");
 
     useEffect(() => {
         axios
@@ -15,13 +19,18 @@ export default function useAuth(code) {
                 // If success then cut the code string from the URL and execute the other thing
                 window.history.pushState({}, null, "/");
 
-                console.log(response.data);
                 setAccessToken(response.data.accessToken);
+                setRefreshToken(response.data.refreshToken);
             })
             .catch(() => {
                 window.location = "/";
             });
     }, [code]);
+    at = accessToken;
+    rt = refreshToken;
+    return [accessToken, refreshToken];
+}
 
-    return accessToken;
+export function getTokens() {
+    return [at, rt];
 }

@@ -4,11 +4,10 @@ const express = require("express");
 const cors = require("cors");
 const spotifyWebApi = require("spotify-web-api-node");
 const db = require("./db.js");
-const mongoose = require("mongoose");
 
 const app = express();
 const port = process.env.REACT_APP_SERVER_PORT;
-const User = require("./models/usersModel").User;
+
 // DB
 db.connectDB();
 
@@ -25,13 +24,14 @@ const credentials = {
 app.post("/spotifylogin", (req, res) => {
     let spotifyApi = new spotifyWebApi(credentials);
     const code = req.body.code;
-    console.log(code);
+
     spotifyApi
         .authorizationCodeGrant(code)
         .then((data) => {
             // Returning the User's AccessToken in the json format
             res.json({
                 accessToken: data.body.access_token,
+                refreshToken: data.body.refresh_token,
             });
         })
         .catch((err) => {
@@ -42,13 +42,16 @@ app.post("/spotifylogin", (req, res) => {
 
 app.post("/spotifysignup", (req, res) => {
     const spotifyID = req.body.id;
-    User.findOne({ spotifyID: spotifyID }, (err, user) => {
-        if (user) {
-            console.log("User alr exists");
-        } else {
-            db.createUser(spotifyID);
-        }
-    });
+    db.createUser(spotifyID, []);
+    res.sendStatus(200);
+});
+
+app.post("/addPlaylist", (req, res) => {
+    const spotifyID = req.body.currentUser;
+    const tracks = req.body.songs;
+    const playlistName = req.body.playlistName;
+
+    db.updateUser(spotifyID, playlistName, tracks);
     res.sendStatus(200);
 });
 

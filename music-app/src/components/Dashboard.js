@@ -11,15 +11,19 @@ const spotifyApi = new SpotifyWebApi({
 });
 
 export default function Dashboard({ code }) {
+    spotifyApi.resetAccessToken();
+    spotifyApi.resetRefreshToken();
+
     const navigate = useNavigate();
 
-    const accessToken = useAuth(code);
+    const tokenData = useAuth(code);
 
     useEffect(() => {
-        if (!accessToken) return;
-        spotifyApi.setAccessToken(accessToken);
+        if (!tokenData[0]) return;
+        spotifyApi.setAccessToken(tokenData[0]);
+        spotifyApi.setRefreshToken(tokenData[1]);
 
-        // Get user details with help of getMe() function
+        //Get user details with help of getMe() function
         spotifyApi.getMe().then((data) => {
             let id = data.body.id;
             axios
@@ -34,11 +38,12 @@ export default function Dashboard({ code }) {
                     // Redirect to home page
                     navigate("/home");
                 })
-                .catch(() => {
+                .catch((e) => {
+                    console.log(e);
                     window.location = "/";
                 });
         });
-    }, [accessToken]);
+    }, [tokenData[0]]);
 
-    return <div>{code}</div>;
+    return <div></div>;
 }
