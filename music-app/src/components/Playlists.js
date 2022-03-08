@@ -22,7 +22,6 @@ class Playlist extends React.Component {
   
       this.state = {
         searchResults: [],
-
       };
       
     this.searchSong = this.searchSong.bind(this);
