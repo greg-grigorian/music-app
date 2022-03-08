@@ -24,7 +24,9 @@ class NewPlaylist extends React.Component {
     this.state = {
       playlistName: 'My Playlist', // filler text for the playlist name
       searchResults: [],
-      playlistContents: []
+      playlistContents: [],
+      allSongs: [],
+      allPlaylistNames: [],
     };
 
     // add delete
@@ -73,11 +75,16 @@ class NewPlaylist extends React.Component {
     }
 
     Spotify.syncSpotify(this.state.playlistName, songInfo)
+    let all_songs = this.state.allSongs
+    let all_names = this.state.allPlaylistNames
+    all_songs.push(this.state.playlistContents)
+    all_names.push(this.state.allPlaylistNames)
     this.setState({ 
       playlistName: 'My Playlist', //reset playlist name and tracks after playlist is saved to user's account
-      playlistContents: []
+      playlistContents: [],
+      allSongs: all_songs, // store the created playlists into one big array
+      allPlaylistNames: all_names, // store the names of the playlists in another array with the same indexing
     });
-  
   }
 
   // using the api call in spotify.js
