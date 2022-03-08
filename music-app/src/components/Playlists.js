@@ -2,6 +2,7 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import Songs from "./Songs"
 import SearchBar from "./Searchbar"
+import PlaylistContainer from './PlaylistContainer'
 
 import Spotify from "../spotify"
 class Results extends React.Component {
@@ -14,19 +15,16 @@ class Results extends React.Component {
     }
   }
 
-
-
 class Playlist extends React.Component {
     constructor(props) {
       super(props);
-  
+      
       this.state = {
         searchResults: [],
       };
-      
-    this.searchSong = this.searchSong.bind(this);
     }
     searchSong(term){
+      console.log(this.props.playlists)
         Spotify.searchSong(term).then(searchResults => {
           this.setState({ 
             searchResults: searchResults 
@@ -39,15 +37,12 @@ render() {
         <Sidebar/>
         <h2> Search for a song in your playlists: </h2>
             <div className="playlists_container">
-
                 <div className="playlists_search">
                     <SearchBar onSearch={this.searchSong} searchResults={this.state.searchResults} />
                 </div>
                 <div className="recommendations">
                 <Results searchResults={this.state.searchResults} />
                 </div>
-
-                
             </div>
         
         </>

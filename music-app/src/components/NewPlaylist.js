@@ -4,7 +4,7 @@ import Spotify from '../spotify';
 import Sidebar from './Sidebar';
 import Songs from './Songs';
 import SearchBar from './Searchbar';
-
+import PlaylistContainer from './PlaylistContainer'
 
 
 // Displays search results. Only used in here, not a reusable component, so it doesn't get its own file.
@@ -25,8 +25,6 @@ class NewPlaylist extends React.Component {
       playlistName: 'My Playlist', // filler text for the playlist name
       searchResults: [],
       playlistContents: [],
-      allSongs: [],
-      allPlaylistNames: [],
     };
 
     // add delete
@@ -78,12 +76,12 @@ class NewPlaylist extends React.Component {
     let all_songs = this.state.allSongs
     let all_names = this.state.allPlaylistNames
     all_songs.push(this.state.playlistContents)
-    all_names.push(this.state.allPlaylistNames)
+    all_names.push(this.state.playlistName)
+    //this.props.updatedPlaylists(all_songs)
+    //this.props.updatedNames(all_names)
     this.setState({ 
       playlistName: 'My Playlist', //reset playlist name and tracks after playlist is saved to user's account
       playlistContents: [],
-      allSongs: all_songs, // store the created playlists into one big array
-      allPlaylistNames: all_names, // store the names of the playlists in another array with the same indexing
     });
   }
 
@@ -104,7 +102,7 @@ class NewPlaylist extends React.Component {
   }
 
   render(){
-    return (
+    return (          
       <div>
           <Sidebar />
         <div className="new_container">
@@ -118,15 +116,15 @@ class NewPlaylist extends React.Component {
             <div className="right_new">
                 <br></br>
                 <CurrentPlaylist playlistName={this.state.playlistName} playlistContents={this.state.playlistContents} onRemove={this.deleteSong} 
-              onNameChange={this.changeName} onSave={this.syncSpotify} />
-            </div>
+              onNameChange={this.changeName} onSave={this.syncSpotify} />             
+            </div>            
           </div>
         </div>
-      </div>
-
-      
+      </div>          
     );
   }
 }
+
+// <Playlists names={this.state.allPlaylistNames} totalSongs = {this.state.allSongs}/>
 
 export default NewPlaylist;
