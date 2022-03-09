@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const spotifyWebApi = require("spotify-web-api-node");
 const db = require("./db.js");
-
+const axios = require("axios");
 const app = express();
 const port = process.env.REACT_APP_SERVER_PORT;
 
@@ -20,9 +20,9 @@ const credentials = {
     clientSecret: process.env.REACT_APP_CLIENT_SECRET,
     redirectUri: `http://localhost:${process.env.REACT_APP_CLIENT_PORT}/`,
 };
+let spotifyApi = new spotifyWebApi(credentials);
 
 app.post("/spotifylogin", (req, res) => {
-    let spotifyApi = new spotifyWebApi(credentials);
     const code = req.body.code;
 
     spotifyApi
@@ -33,6 +33,9 @@ app.post("/spotifylogin", (req, res) => {
                 accessToken: data.body.access_token,
                 refreshToken: data.body.refresh_token,
             });
+            spotifyApi.setAccessToken(data.body.access_token);
+            spotifyApi.setRefreshToken(data.body.refresh_token);
+            
         })
         .catch((err) => {
             console.log(err);
@@ -42,8 +45,34 @@ app.post("/spotifylogin", (req, res) => {
 
 app.post("/spotifysignup", (req, res) => {
     const spotifyID = req.body.id;
-    db.createUser(spotifyID, []);
-    res.sendStatus(200);
+    let syncPlaylists = [];
+
+    spotifyApi.getUserPlaylists(spotifyApi).then(async (data) => {
+        let playlists = data.body.items
+        for(const playlist of playlists) {
+            let pName = playlist.name
+            let trackLink = playlist.tracks.href
+            console.log(playlist)
+            await axios
+                .get(`${trackLink}`, {
+                    headers: {
+                        Authorization: `Bearer ${spotifyApi.getAccessToken()}`,
+                    },
+                })
+                .then(async (res) => {
+                    let songs = [];
+                    for (const song of res.data.items) {
+                        await songs.push(song.track.uri);
+                    }
+                    await syncPlaylists.push({ name: pName, songs: songs });
+                });
+        }
+        await console.log(syncPlaylists);
+        if(syncPlaylists != []) {
+            await db.createUser(spotifyID, syncPlaylists);
+        }
+        res.sendStatus(200);
+    });
 });
 
 app.post("/addPlaylist", (req, res) => {
