@@ -2,7 +2,7 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import Songs from "./Songs"
 import SearchBar from "./Searchbar"
-import PlaylistContainer from './PlaylistContainer'
+import { useEffect, useState } from "react";
 
 import Spotify from "../spotify"
 class Results extends React.Component {
@@ -15,6 +15,8 @@ class Results extends React.Component {
     }
   }
 
+  let axios = require("axios");
+
 class Playlist extends React.Component {
     constructor(props) {
       super(props);
@@ -23,14 +25,23 @@ class Playlist extends React.Component {
         searchResults: [],
       };
     }
+
     searchSong(term){
-      console.log(this.props.playlists)
-        Spotify.searchSong(term).then(searchResults => {
-          this.setState({ 
-            searchResults: searchResults 
-          });
-        });
-      }
+      let id = Spotify.getUser
+      axios
+      .get(
+          `http://localhost:${process.env.REACT_APP_SERVER_PORT}/getplaylists`,
+          { id }
+      )
+      .then((response) => {
+         console.log(response.data)
+      })
+      .catch((e) => {
+          console.log(e);
+          window.location = "/";
+      })
+    }
+
 render() {
     return (
         <>

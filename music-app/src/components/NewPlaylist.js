@@ -4,7 +4,6 @@ import Spotify from '../spotify';
 import Sidebar from './Sidebar';
 import Songs from './Songs';
 import SearchBar from './Searchbar';
-import PlaylistContainer from './PlaylistContainer'
 
 
 // Displays search results. Only used in here, not a reusable component, so it doesn't get its own file.
@@ -73,12 +72,6 @@ class NewPlaylist extends React.Component {
     }
 
     Spotify.syncSpotify(this.state.playlistName, songInfo)
-    let all_songs = this.state.allSongs
-    let all_names = this.state.allPlaylistNames
-    all_songs.push(this.state.playlistContents)
-    all_names.push(this.state.playlistName)
-    //this.props.updatedPlaylists(all_songs)
-    //this.props.updatedNames(all_names)
     this.setState({ 
       playlistName: 'My Playlist', //reset playlist name and tracks after playlist is saved to user's account
       playlistContents: [],
@@ -125,6 +118,5 @@ class NewPlaylist extends React.Component {
   }
 }
 
-// <Playlists names={this.state.allPlaylistNames} totalSongs = {this.state.allSongs}/>
 
 export default NewPlaylist;
