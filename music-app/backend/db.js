@@ -60,11 +60,12 @@ module.exports.updateUser = (spotifyID, playlistName, tracks) => {
     });
 };
 
-module.exports.getUser = (spotifyID) => {
+module.exports.getUserPlaylists = (spotifyID) => {
     const db = mongoose.connection;
     let collection = db.collection("spotifyUsers");
     collection.findOne({ spotifyID: spotifyID }, (err, user) => {
             if (user) {
+                console.log(user.playlists)
                 return user.playlists
             }
             else {

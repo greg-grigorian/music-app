@@ -89,7 +89,7 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 app.get("/getplaylists", (req, res) => {
     const spotifyID = req.body.id;
     let data
-    data = db.getUser(spotifyID);
+    data = db.getUserPlaylists(spotifyID);
     res.json({
         playlistData: data
     });

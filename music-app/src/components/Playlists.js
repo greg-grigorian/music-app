@@ -15,7 +15,7 @@ class Results extends React.Component {
     }
   }
 
-  let axios = require("axios");
+let axios = require("axios");
 
 class Playlist extends React.Component {
     constructor(props) {
