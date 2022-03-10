@@ -2,7 +2,6 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import Songs from "./Songs"
 import SearchBar from "./Searchbar"
-import { useEffect, useState } from "react";
 
 import Spotify from "../spotify"
 class Results extends React.Component {
@@ -23,17 +22,41 @@ class Playlist extends React.Component {
       
       this.state = {
         searchResults: [],
+        targetPlaylist: "",
       };
+      this.searchSong = this.searchSong.bind(this);
     }
 
+
     searchSong(term){
+      Spotify.searchSong(term).then(searchResults => {
+        this.setState({ 
+          searchResults: searchResults, 
+          targetPlaylist: ""
+        });
+      });
+      let target = this.state.searchResults[0].uri
+      console.log(this.state.searchResults[0].name)
         Spotify.getUser().then(id => {
             axios.get(
                 `http://localhost:${process.env.REACT_APP_SERVER_PORT}/getplaylists`,
                 { params: { id } }
             )
             .then((response) => {
-                //console.log(response.data.playlistData);
+              let library = response.data.playlistData
+              for (var i = 0; i < library.length; i++){
+                //console.log(library[i])
+                  for (var j = 0; j < library[i].songs.length; j++){
+                    //console.log(library[i].songs[j])
+                      if (target === library[i].songs[j]){
+                        let name = library[i].name
+                        this.setState({ 
+                          targetPlaylist : name 
+                        });
+                      }
+                  }
+              }
+                console.log(this.state.targetPlaylist);
             })
             .catch((e) => {
                 console.log(e);
@@ -52,7 +75,7 @@ render() {
                     <SearchBar onSearch={this.searchSong} searchResults={this.state.searchResults} />
                 </div>
                 <div className="recommendations">
-                <Results searchResults={this.state.searchResults} />
+                {/* <Results searchResults={this.state.searchResults} /> */}
                 </div>
             </div>
         

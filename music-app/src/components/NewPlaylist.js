@@ -46,12 +46,13 @@ class NewPlaylist extends React.Component {
         return;
     } 
     // adding new song
-    else {
+    else { 
       songs.push(song);
       this.setState({ 
         playlistContents: songs 
       });
     }
+    console.log(this.state.playlistContents)
   }
   // deleting a song from playlist
   deleteSong(song){
@@ -77,7 +78,7 @@ class NewPlaylist extends React.Component {
       playlistContents: [],
     });
   }
-
+  
   // using the api call in spotify.js
   searchSpotify(term){
     Spotify.searchSong(term).then(searchResults => {
