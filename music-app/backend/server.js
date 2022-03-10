@@ -87,12 +87,10 @@ app.post("/addPlaylist", (req, res) => {
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-app.get("/getplaylists", (req, res) => {
-    const spotifyID = req.body.id;
-    let data
-    data = db.getUserPlaylists(spotifyID);
-    res.json({
-        playlistData: data
+app.get("/getplaylists", async (req, res) => {
+    const spotifyID = req.query.id;
+    let data = await db.getUserPlaylists(spotifyID)
+    await res.json({
+        playlistData: data,
     });
-    res.sendStatus(200);
 });

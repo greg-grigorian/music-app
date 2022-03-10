@@ -1,9 +1,17 @@
 import { getTokens } from "../src/auth";
 let axios = require("axios");
+const spotifyWebApi = require("spotify-web-api-node");
 
 const authEndpoint = "https://accounts.spotify.com/authorize";
 const redirectUri = `http://localhost:${process.env.REACT_APP_CLIENT_PORT}/`;
 const clientId = process.env.REACT_APP_CLIENT_ID;
+
+const credentials = {
+    clientId: process.env.REACT_APP_CLIENT_ID,
+    clientSecret: process.env.REACT_APP_CLIENT_SECRET,
+    redirectUri: `http://localhost:${process.env.REACT_APP_CLIENT_PORT}/`,
+};
+let spotifyApi = new spotifyWebApi(credentials);
 
 const scopes = [
     "streaming",
@@ -25,18 +33,20 @@ const Spotify = {
     authorizeSpotify() {
         // If the access token already exists, return it
         if (accessToken) {
+            spotifyApi.setAccessToken(accessToken);
             return accessToken;
         }
         // Else, if the token shows up in the window location, return it
         let at = getTokens()[0];
         if (at !== "") {
             accessToken = at;
+            spotifyApi.setAccessToken(accessToken);
             return accessToken;
         } else {
             // Direct user to the login page of spotify.
             // KNOWN BUG: Redirects to new every time. Would be nice if it put users back where they were.
             // Will be fixed, if, say, the access token was taken once at login and never again. (aka useAuth works here)
-            window.location = `https://accounts.spotify.com/authorize?client_id=${clientId}&response_type=token&scope=${scopes.join("%20")}&redirect_uri=http://localhost:${process.env.REACT_APP_CLIENT_PORT}/home/`; //redirects user to access url
+            window.location = `http://localhost:${process.env.REACT_APP_CLIENT_PORT}/`; //redirects user to access url
         }
     },
 
@@ -75,24 +85,12 @@ const Spotify = {
             });
     },
 
-    getUser(){
-        const accessToken = Spotify.authorizeSpotify();
-        const headers = {
-            Authorization: `Bearer ${accessToken}`,
-        };
-        let currentUser
-        fetch(
-          `https://api.spotify.com/v1/me`, // gets user info from Spotify
-          { headers: headers }
-      )
-      .then((response) => {
-        
-    })
-    .then((jsonResponse) => {
-        currentUser = jsonResponse.id;
-        return currentUser;
-       });
-      },
+    getUser() {
+        this.authorizeSpotify();
+        return spotifyApi.getMe().then((response) => {
+            return response.body.id;
+        })
+    },
 
     // these are searches for playlists based on a topic
     getRecommendations() {

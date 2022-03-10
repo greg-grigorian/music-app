@@ -27,19 +27,19 @@ class Playlist extends React.Component {
     }
 
     searchSong(term){
-      let id = Spotify.getUser()
-      axios
-      .get(
-          `http://localhost:${process.env.REACT_APP_SERVER_PORT}/getplaylists`,
-          { id }
-      )
-      .then((response) => {
-         //console.log(response.data)
-      })
-      .catch((e) => {
-          console.log(e);
-          window.location = "/";
-      })
+        Spotify.getUser().then(id => {
+            axios.get(
+                `http://localhost:${process.env.REACT_APP_SERVER_PORT}/getplaylists`,
+                { params: { id } }
+            )
+            .then((response) => {
+                //console.log(response.data.playlistData);
+            })
+            .catch((e) => {
+                console.log(e);
+                window.location = "/";
+            });
+        })
     }
 
 render() {

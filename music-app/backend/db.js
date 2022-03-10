@@ -24,7 +24,6 @@ module.exports.createUser = (spotifyID, tracks) => {
     let collection = db.collection("spotifyUsers");
     collection.findOne({ spotifyID: spotifyID }, (err, user) => {
         if (user) {
-            console.log("User alr exists");
             return;
         } else {
             let user = new userModel({
@@ -49,7 +48,6 @@ module.exports.updateUser = (spotifyID, playlistName, tracks) => {
             };
 
             newPlaylists.push(toAdd);
-            console.log(newPlaylists);
             collection.updateOne(
                 { spotifyID: spotifyID },
                 { $set: { playlists: newPlaylists } }
@@ -60,17 +58,14 @@ module.exports.updateUser = (spotifyID, playlistName, tracks) => {
     });
 };
 
-module.exports.getUserPlaylists = (spotifyID) => {
-    console.log(spotifyID)
+module.exports.getUserPlaylists = async (spotifyID) => {
     const db = mongoose.connection;
     let collection = db.collection("spotifyUsers");
-    collection.findOne({ spotifyID: spotifyID }, (err, user) => {
-            if (user) {
-                console.log(user.playlists)
-                return user.playlists
-            }
-            else {
-                return 
-            }
-        });
-    };
+    let playlists;
+    await collection.findOne({ spotifyID: spotifyID }).then(user => {
+        if (user) {
+            playlists = user.playlists;
+        }
+    })
+    return playlists;
+};
