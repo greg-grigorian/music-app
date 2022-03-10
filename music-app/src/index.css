@@ -486,7 +486,7 @@ body {
   width: 50%;
   min-height: 30vw;
   margin-left: 25%;
-  background-color: white;
+  background-color: rgb(185, 131, 208);
   display: flex;
   border-radius: 5px;
   text-align: center;
@@ -507,7 +507,7 @@ body {
 }
 
 .playlists_search {
-  margin-left: 20%;
+  margin-left: 50%;
 }
 
 /* General CSS */

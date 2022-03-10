@@ -86,6 +86,7 @@ class NewPlaylist extends React.Component {
         searchResults: searchResults 
       });
     });
+    console.log(this.state.searchResults[0])
   }
 
   // function to change the name of the playlist

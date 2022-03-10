@@ -8,7 +8,7 @@ class Results extends React.Component {
     render() {
         return(
             <div className="searchresults">
-                <Songs songs={this.props.searchResults} onAdd={this.props.onAdd} isRemoval={false}/>
+                <Songs songs={this.props.searchResults}  isRemoval={false}/>
             </div>
         )
     }
@@ -57,6 +57,7 @@ class Playlist extends React.Component {
                   }
               }
                 console.log(this.state.targetPlaylist);
+                console.log(this.state.searchResults)
             })
             .catch((e) => {
                 console.log(e);
@@ -73,9 +74,8 @@ render() {
             <div className="playlists_container">
                 <div className="playlists_search">
                     <SearchBar onSearch={this.searchSong} searchResults={this.state.searchResults} />
-                </div>
-                <div className="recommendations">
-                {/* <Results searchResults={this.state.searchResults} /> */}
+                    <br></br>
+                 <Results searchResults={this.state.searchResults} />         
                 </div>
             </div>
         
