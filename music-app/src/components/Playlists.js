@@ -27,14 +27,14 @@ class Playlist extends React.Component {
     }
 
     searchSong(term){
-      let id = Spotify.getUser
+      let id = Spotify.getUser()
       axios
       .get(
           `http://localhost:${process.env.REACT_APP_SERVER_PORT}/getplaylists`,
           { id }
       )
       .then((response) => {
-         console.log(response.data)
+         //console.log(response.data)
       })
       .catch((e) => {
           console.log(e);

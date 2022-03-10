@@ -52,7 +52,7 @@ app.post("/spotifysignup", (req, res) => {
         for(const playlist of playlists) {
             let pName = playlist.name
             let trackLink = playlist.tracks.href
-            console.log(playlist)
+       
             await axios
                 .get(`${trackLink}`, {
                     headers: {
@@ -62,12 +62,13 @@ app.post("/spotifysignup", (req, res) => {
                 .then(async (res) => {
                     let songs = [];
                     for (const song of res.data.items) {
-                        await songs.push(song.track.uri);
+                        if (song.track){
+                            await songs.push(song.track.uri);
+                        }                     
                     }
                     await syncPlaylists.push({ name: pName, songs: songs });
                 });
-        }
-        await console.log(syncPlaylists);
+        }       
         if(syncPlaylists != []) {
             await db.createUser(spotifyID, syncPlaylists);
         }

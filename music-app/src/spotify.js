@@ -76,19 +76,22 @@ const Spotify = {
     },
 
     getUser(){
+        const accessToken = Spotify.authorizeSpotify();
         const headers = {
             Authorization: `Bearer ${accessToken}`,
         };
         let currentUser
-        return fetch(
+        fetch(
           `https://api.spotify.com/v1/me`, // gets user info from Spotify
           { headers: headers }
       )
-          .then((response) => {
-              return response.json();
-          })
-          .then((jsonResponse) => {
-              currentUser = jsonResponse.id;})
+      .then((response) => {
+        
+    })
+    .then((jsonResponse) => {
+        currentUser = jsonResponse.id;
+        return currentUser;
+       });
       },
 
     // these are searches for playlists based on a topic
