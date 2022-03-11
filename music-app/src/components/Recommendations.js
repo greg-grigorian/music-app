@@ -10,6 +10,7 @@ class Recommendations extends Component {
         recs: []
     };
     
+    //Initialize recommendations instances from Spotify
     this.happy = this.happy.bind(this);
     this.depressed = this.depressed.bind(this);
     this.chill = this.chill.bind(this);
