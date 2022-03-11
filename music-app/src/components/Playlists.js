@@ -2,14 +2,14 @@ import React from 'react'
 import Sidebar from './Sidebar'
 import Songs from "./Songs"
 import PlaylistSearchBar from "./PlaylistSearchbar"
-import SearchBar from './Searchbar';
+import DisplayedPlaylists from './DisplayedPlaylists'
 
 import Spotify from "../spotify"
 class Results extends React.Component {
     render() {
         return(
             <div className="searchresults">
-                <Songs songs={this.props.searchResults}  isRemoval={false}/>
+                <DisplayedPlaylists playlists={this.props.displayedPlaylist}  isRemoval={false}/>
             </div>
         )
     }
@@ -24,6 +24,7 @@ class Playlist extends React.Component {
       this.state = {
         searchResults: [],
         targetPlaylist: "",
+        displayedPlaylist: []
       };
       this.searchSong = this.searchSong.bind(this);
     }
@@ -37,7 +38,6 @@ class Playlist extends React.Component {
         });
       });
       let target = this.state.searchResults[0].uri
-      console.log(this.state.searchResults[0].name)
         Spotify.getUser().then(id => {
             axios.get(
                 `http://localhost:${process.env.REACT_APP_SERVER_PORT}/getplaylists`,
@@ -46,19 +46,18 @@ class Playlist extends React.Component {
             .then((response) => {
               let library = response.data.playlistData
               for (var i = 0; i < library.length; i++){
-                //console.log(library[i])
                   for (var j = 0; j < library[i].songs.length; j++){
-                    //console.log(library[i].songs[j])
                       if (target === library[i].songs[j]){
                         let name = library[i].name
+                        let temp = [];
+                        temp.push(library[i])
                         this.setState({ 
-                          targetPlaylist : name 
+                          targetPlaylist : name, 
+                          displayedPlaylist: temp
                         });
                       }
                   }
               }
-                console.log(this.state.targetPlaylist);
-                console.log(this.state.searchResults)
             })
             .catch((e) => {
                 console.log(e);
@@ -76,7 +75,7 @@ render() {
                 <div className="playlists_search">
                     <PlaylistSearchBar onSearch={this.searchSong} searchResults={this.state.searchResults} />
                     <br></br>
-                 <Results searchResults={this.state.searchResults} />         
+                 <Results displayedPlaylist={this.state.displayedPlaylist} />         
                 </div>
             </div>
         
