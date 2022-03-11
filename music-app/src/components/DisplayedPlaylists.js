@@ -2,8 +2,8 @@ import React from 'react';
 import * as Io from 'react-icons/io'; //some nice looking icons
 
 
-/* Reusable component to list out songs */
-// each individual song has the song title, ability to add/remove, and artist - album
+/* Reusable component to list out playlists */
+// each individual playlist has the song title, ability to add/remove, and artist - album
 class DisplayedPlaylist extends React.Component {
     constructor(props){
         super(props);
@@ -19,7 +19,7 @@ class DisplayedPlaylist extends React.Component {
     }
 }
 
-// group the songs in a map
+// group the playlists in a map
 class DisplayedPlaylists extends React.Component {
     render() {
         return(

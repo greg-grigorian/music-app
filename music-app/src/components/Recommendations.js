@@ -20,7 +20,7 @@ class Recommendations extends Component {
 }
 
 
-  // can add many more moods in this way
+  // Linking each button to a Spotify search
 
   happy(){
     this.setState({

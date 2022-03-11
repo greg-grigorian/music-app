@@ -1,7 +1,5 @@
-
 import React from 'react';
 
-// Changed my mind about the searchbar; might need it in the playlists page too
 class PlaylistSearchBar extends React.Component {
     // initializing functions we need
     constructor(props){
@@ -14,16 +12,19 @@ class PlaylistSearchBar extends React.Component {
         this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
+    // Handle search term
     handleSearch(){
         this.props.onSearch(this.state.term);
     }
 
+    // Handles user request
     handleTermChange(change){
         this.setState({ 
           term: change.target.value 
         });
     }
 
+    // Prevents no input
     handleKeyDown(down){
         if(down.keyCode === 13){ // the enter key
             this.props.onSearch(this.state.term); // no term provided
@@ -33,7 +34,6 @@ class PlaylistSearchBar extends React.Component {
 
     render() {
         return(
-        // Got rid of the icon purely because it refused to align correctly. 
         <div className="playlist_searchbar">
                 <input placeholder="Search for something!" onChange={this.handleTermChange} onKeyDown={this.handleKeyDown}/>
                 <button className="playlist_searchbar_button" onClick={this.handleSearch}>

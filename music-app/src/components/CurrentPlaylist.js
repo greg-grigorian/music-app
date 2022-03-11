@@ -8,6 +8,7 @@ class CurrentPlaylist extends React.Component {
         this.handleNameChange = this.handleNameChange.bind(this);
     }  
 
+    // Allows you to change the name of the playlist
     handleNameChange(newname){
         this.props.onNameChange(newname.target.value);
     }

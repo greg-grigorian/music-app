@@ -29,7 +29,7 @@ class Playlist extends React.Component {
       this.searchSong = this.searchSong.bind(this);
     }
 
-
+    // Uses search bar to find specific song within User's playlists
     searchSong(term){
       Spotify.searchSong(term).then(searchResults => {
         this.setState({ 

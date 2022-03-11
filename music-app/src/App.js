@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard";
 
 const code = new URLSearchParams(window.location.search).get("code");
 
+// Links pages to each other
 function App() {
     return (
         <Router>

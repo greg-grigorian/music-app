@@ -28,15 +28,13 @@ export const loginUrl = `${authEndpoint}?client_id=${clientId}&response_type=cod
 let accessToken;
 
 const Spotify = {
-    /* This is only here because I couldn't figure out how to get the useAuth working. Will probably disappear later*/
-    // Also this doesn't let you know when the access token expires...
+    // Get Spotify authorization from auth.js
     authorizeSpotify() {
         // If the access token already exists, return it
         if (accessToken) {
             spotifyApi.setAccessToken(accessToken);
             return accessToken;
         }
-        // Else, if the token shows up in the window location, return it
         let at = getTokens()[0];
         if (at !== "") {
             accessToken = at;
@@ -44,15 +42,11 @@ const Spotify = {
             return accessToken;
         } else {
             // Direct user to the login page of spotify.
-            // KNOWN BUG: Redirects to new every time. Would be nice if it put users back where they were.
-            // Will be fixed, if, say, the access token was taken once at login and never again. (aka useAuth works here)
             window.location = `http://localhost:${process.env.REACT_APP_CLIENT_PORT}/`; //redirects user to access url
         }
     },
 
     // for reference: https://developer.spotify.com/documentation/web-api/reference/#/operations/search
-    // As of now, this triggers a code get upon first use. This is because of the repetitive authorization.
-    // Also, the accesstoken appears in the URL - remove that later
     searchSong(query) {
         const accessToken = Spotify.authorizeSpotify();
         // api call using the access token
@@ -85,6 +79,7 @@ const Spotify = {
             });
     },
 
+    // Returns user ID
     getUser() {
         this.authorizeSpotify();
         return spotifyApi.getMe().then((response) => {

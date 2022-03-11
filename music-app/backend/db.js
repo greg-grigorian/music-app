@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const userModel = require("./models/usersModel").User;
 
+//Connecting MongoDb to the React App
 module.exports.connectDB = async () => {
     try {
         const databaseName = "spotifydb";
@@ -17,8 +18,9 @@ module.exports.connectDB = async () => {
         console.error(`Error: ${error.message}`);
         process.exit(1);
     }
-}; //Connecting MongoDb to the React App
+}; 
 
+//Creating spotify user with either existing User or a new one and adding to collection
 module.exports.createUser = (spotifyID, tracks) => {
     const db = mongoose.connection;
     let collection = db.collection("spotifyUsers");
@@ -34,8 +36,9 @@ module.exports.createUser = (spotifyID, tracks) => {
             collection.insertOne(user);
         }
     });
-}; //Creating spotify user with either existing User or a new one and adding to collection
+}; 
 
+// Add potential playlists/tracks to user data when updated
 module.exports.updateUser = (spotifyID, playlistName, tracks) => {
     const db = mongoose.connection;
     let collection = db.collection("spotifyUsers");
@@ -56,8 +59,9 @@ module.exports.updateUser = (spotifyID, playlistName, tracks) => {
             this.createUser(spotifyID, tracks);
         }
     });
-}; // Add potential playlists/tracks to user data when updated
+}; 
 
+// Retrieve user playlists from backend server
 module.exports.getUserPlaylists = async (spotifyID) => {
     const db = mongoose.connection;
     let collection = db.collection("spotifyUsers");
@@ -68,4 +72,4 @@ module.exports.getUserPlaylists = async (spotifyID) => {
         }
     })
     return playlists;
-}; // Retrieve user playlists from backend server
+}; 

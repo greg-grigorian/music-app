@@ -1,6 +1,7 @@
 import React from "react";
 import { loginUrl } from "../spotify";
 
+// Login page linked to Spotify
 export default function Login() {
 
     return (

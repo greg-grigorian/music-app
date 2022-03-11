@@ -43,6 +43,7 @@ app.post("/spotifylogin", (req, res) => {
         });
 });
 
+// Syncs User's playlist from Spotify and creates a new entry in the database for User
 app.post("/spotifysignup", (req, res) => {
     const spotifyID = req.body.id;
     let syncPlaylists = [];
@@ -74,8 +75,9 @@ app.post("/spotifysignup", (req, res) => {
         }
         res.sendStatus(200);
     });
-});
+}); 
 
+// Add playlist to database
 app.post("/addPlaylist", (req, res) => {
     const spotifyID = req.body.currentUser;
     const tracks = req.body.songs;
@@ -85,8 +87,7 @@ app.post("/addPlaylist", (req, res) => {
     res.sendStatus(200);
 });
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
-
+// Get playlist from database
 app.get("/getplaylists", async (req, res) => {
     const spotifyID = req.query.id;
     let data = await db.getUserPlaylists(spotifyID)
@@ -94,3 +95,5 @@ app.get("/getplaylists", async (req, res) => {
         playlistData: data,
     });
 });
+
+app.listen(port, () => console.log(`Listening on port ${port}`));

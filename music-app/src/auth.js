@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 let axios = require("axios");
 
+// Stores access and refresh tokens
 var at = "";
 var rt = "";
 

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import * as Io from 'react-icons/io'; //some nice looking icons
 import { Link } from 'react-router-dom';
 
-const NavLinks = [ // all the pages go in here
+const NavLinks = [ // Creating information for each page
     {
       path: '/home',
       page: 'Homepage',
