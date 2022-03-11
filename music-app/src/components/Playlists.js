@@ -36,34 +36,41 @@ class Playlist extends React.Component {
           searchResults: searchResults, 
           targetPlaylist: ""
         });
+        
+        let target = this.state.searchResults[0].uri;
+        Spotify.getUser().then((id) => {
+            axios
+                .get(
+                    `http://localhost:${process.env.REACT_APP_SERVER_PORT}/getplaylists`,
+                    { params: { id } }
+                )
+                .then((response) => {
+                    let library = response.data.playlistData;
+                    for (var i = 0; i < library.length; i++) {
+                        for (
+                            var j = 0;
+                            j < library[i].songs.length;
+                            j++
+                        ) {
+                            if (target === library[i].songs[j]) {
+                                let name = library[i].name;
+                                let temp = [];
+                                temp.push(library[i]);
+                                this.setState({
+                                    targetPlaylist: name,
+                                    displayedPlaylist: temp,
+                                });
+                            }
+                        }
+                    }
+                })
+                .catch((e) => {
+                    console.log(e);
+                    window.location = "/";
+                });
+        });
       });
-      let target = this.state.searchResults[0].uri
-        Spotify.getUser().then(id => {
-            axios.get(
-                `http://localhost:${process.env.REACT_APP_SERVER_PORT}/getplaylists`,
-                { params: { id } }
-            )
-            .then((response) => {
-              let library = response.data.playlistData
-              for (var i = 0; i < library.length; i++){
-                  for (var j = 0; j < library[i].songs.length; j++){
-                      if (target === library[i].songs[j]){
-                        let name = library[i].name
-                        let temp = [];
-                        temp.push(library[i])
-                        this.setState({ 
-                          targetPlaylist : name, 
-                          displayedPlaylist: temp
-                        });
-                      }
-                  }
-              }
-            })
-            .catch((e) => {
-                console.log(e);
-                window.location = "/";
-            });
-        })
+
     }
 
 render() {
