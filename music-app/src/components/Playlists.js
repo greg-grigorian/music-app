@@ -1,7 +1,8 @@
 import React from 'react'
 import Sidebar from './Sidebar'
 import Songs from "./Songs"
-import SearchBar from "./Searchbar"
+import PlaylistSearchBar from "./PlaylistSearchbar"
+import SearchBar from './Searchbar';
 
 import Spotify from "../spotify"
 class Results extends React.Component {
@@ -73,7 +74,7 @@ render() {
         <h2> Search for a song in your playlists: </h2>
             <div className="playlists_container">
                 <div className="playlists_search">
-                    <SearchBar onSearch={this.searchSong} searchResults={this.state.searchResults} />
+                    <PlaylistSearchBar onSearch={this.searchSong} searchResults={this.state.searchResults} />
                     <br></br>
                  <Results searchResults={this.state.searchResults} />         
                 </div>
